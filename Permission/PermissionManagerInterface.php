@@ -7,7 +7,7 @@
  *
  */
 
-namespace Ano\Bundle\SecurityBundle\Security;
+namespace Ano\Bundle\SecurityBundle\Permission;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
