@@ -29,7 +29,7 @@ interface PermissionManagerInterface
     const FROM_ROLE = 21;
 
     /**
-     * @param array $privileges
+     * @param mixed $privileges
      * @param int   $onType
      * @param mixed $onValue
      * @param int   $toType
@@ -37,10 +37,10 @@ interface PermissionManagerInterface
      *
      * @return mixed
      */
-    public function grantPrivileges(array $privileges, $onType, $onValue, $toType, $toValue);
+    public function grantPrivileges($privileges, $onType, $onValue, $toType, $toValue);
 
     /**
-     * @param array $privileges
+     * @param mixed $privileges
      * @param int   $onType
      * @param mixed $onValue
      * @param int   $fromType
@@ -48,5 +48,5 @@ interface PermissionManagerInterface
      *
      * @return mixed
      */
-    public function revokePrivileges(array $privileges, $onType, $onValue, $fromType, $fromValue);
+    public function revokePrivileges($privileges, $onType, $onValue, $fromType, $fromValue);
 }
