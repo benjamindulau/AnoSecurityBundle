@@ -32,5 +32,6 @@ class AnoSecurityExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('security.xml');
+        $loader->load('security_expressions.xml');
     }
 }
