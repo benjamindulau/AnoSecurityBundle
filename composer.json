@@ -1,0 +1,26 @@
+{
+    "name":         "ano/security-bundle",
+    "description":  "Anonymation Security bundle",
+    "keywords":     ["security", "permission", "acl"],
+    "type":         "symfony-bundle",
+    "license":      "MIT",
+    "authors": [
+        {
+            "name":     "Benjamin Dulau",
+            "email":    "benjamin.dulau@anonymation.com",
+            "homepage": "http://www.anonymation.com"
+        }
+    ],
+    "require": {
+        "ano/system-bundle": "*"
+    },
+    "autoload": {
+        "psr-0": { "Ano\\Bundle\\SecurityBundle": "" }
+    },
+    "target-dir": "Ano/Bundle/SecurityBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
