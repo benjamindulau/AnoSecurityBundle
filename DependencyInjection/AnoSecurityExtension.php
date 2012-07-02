@@ -9,7 +9,7 @@
 
 namespace Ano\Bundle\SecurityBundle\DependencyInjection;
 
-use Ano\Bundle\SystemBundle\DependencyInjection\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
