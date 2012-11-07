@@ -137,7 +137,6 @@ class PermissionManager implements PermissionManagerInterface
 
         $identities = array();
         foreach($roles as $role) {
-            // TODO: Dependency to Doctrine here => To be removed as soon as a standard way is implemented in Symfony Security Component
             $identities[] = new RoleSecurityIdentity($role);
         }
 
@@ -285,4 +284,50 @@ class PermissionManager implements PermissionManagerInterface
         return $acl;
     }
 
+    public function createRoleIdentities(array $roles)
+    {
+        $identities = $this->getRoleSecurityIdentity($roles);
+        foreach ($identities as $identity) {
+            $this->aclProvider->createOrRetrieveSecurityIdentityId($identity);
+        }
+    }
+
+    public function deleteAcls($onType, $onValue)
+    {
+        switch($onType) {
+            case self::ON_OBJECT:
+                $this->doDeleteAclsOnObject($onValue);
+            break;
+
+            case self::ON_CLASS:
+                $this->doDeleteAclsOnClass($onValue);
+            break;
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Unexpected value "%s" for $onType', $onType));
+        }
+    }
+
+    protected function doDeleteAclsOnObject($objects)
+    {
+        if (!is_array($objects)) {
+            $objects = array($objects);
+        }
+
+        foreach($objects as $object) {
+            if (!is_object($object)) {
+                throw new \InvalidArgumentException(sprintf('$object must be an instance of an object'));
+            }
+
+            // TODO: Dependency to Doctrine here => To be removed as soon as a standard way is implemented in Symfony Security Component
+            $oid = new ObjectIdentity($object->getId(), ClassUtils::getClass($object));
+            $this->aclProvider->deleteAcl($oid);
+        }
+    }
+
+    protected function doDeleteAclsOnClass($class)
+    {
+        $objectIdentity = new ObjectIdentity('class', $class);
+        $this->aclProvider->deleteAcl($objectIdentity);
+    }
 }

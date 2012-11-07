@@ -6,11 +6,14 @@
 
     <parameters>
         <parameter key="ano_security.permission.permission_manager.class">Ano\Bundle\SecurityBundle\Permission\PermissionManager</parameter>
+        <parameter key="ano_security.acl.dbal.provider.class">Ano\Bundle\SecurityBundle\Security\Acl\Dbal\MutableAclProvider</parameter>
     </parameters>
 
     <services>
+        <service id="ano_security.acl.dbal.provider" class="%ano_security.acl.dbal.provider.class%" public="false" parent="security.acl.dbal.provider" />
+
         <service id="ano_security.permission.permission_manager" class="%ano_security.permission.permission_manager.class%">
-            <argument type="service" id="security.acl.provider" on-invalid="ignore" />
+            <argument type="service" id="ano_security.acl.dbal.provider" on-invalid="ignore" />
         </service>
     </services>
 

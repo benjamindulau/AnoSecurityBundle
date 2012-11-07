@@ -49,4 +49,19 @@ interface PermissionManagerInterface
      * @return mixed
      */
     public function revokePrivileges($privileges, $onType, $onValue, $fromType, $fromValue);
+
+    /**
+     * @param array $role
+     *
+     * @return mixed
+     */
+    public function createRoleIdentities(array $role);
+
+    /**
+     * @param int   $onType
+     * @param mixed $onValue
+     *
+     * @return mixed
+     */
+    public function deleteAcls($onType, $onValue);
 }
