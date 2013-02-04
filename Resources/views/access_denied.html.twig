@@ -1,0 +1,26 @@
+{% extends 'TwigBundle:Exception:error403.html.twig' %}
+
+{% block main_content %}
+    <h1>Oops! Access Denied</h1>
+    {% for voter, decision in decision_collector.decisions %}
+        {% if 'email_verification' == decision['context'] %}
+            <p>
+                You can't do this action until you verified your email address. <a href="#">learn more</a>
+            </p>
+            <p>
+                If you lost the original verification email, you can resend it in your user
+                <a href="{{ path('ano_user_settings_edit') }}">account settings</a>.
+            </p>
+        {% endif %}
+
+        {% if 'strobb_count' == decision['context'] %}
+            <p>
+                Unfortunately, you've reach your monthly limit and you can't add more Strobbs until : date here
+            </p>
+            <p>
+                Did you consider upgrading to premium ? You would get unlimited* access, that's really a good plan! <br />
+                <a href="#">Upgrade premium button</a>
+            </p>
+        {% endif %}
+    {% endfor %}
+{% endblock main_content %}
